@@ -8,6 +8,7 @@ import ky from "ky";
 Web3Function.onRun(async (context: Web3FunctionEventContext) => {
   // Destructure userArgs from context
   const { userArgs, log } = context;
+  const { chainId } = context.gelatoArgs;
 
   const contractInterface = new Interface([userArgs.event as string]);
 
@@ -18,19 +19,23 @@ Web3Function.onRun(async (context: Web3FunctionEventContext) => {
 
     // Handle event data
     console.log(`Event detected: ${JSON.stringify(event)}`);
+    const webHookData = {
+      event: event.name,
+      args: {
+        ...event.args,
+      },
+      transactionHash: log.transactionHash,
+      chainId,
+      address: userArgs.target,
+    };
+    console.log("WEBHOOK DATA ->", webHookData);
 
     try {
       // Send a POST request to the webhook URL with the event data
       const response = await ky
         .post(userArgs.webhookUrl as string, {
           json: {
-            event: event.name,
-            args: {
-              from: event.args.from,
-              to: event.args.to,
-              value: event.args.value.toString(), // Convert BigNumber to string
-            },
-            transactionHash: log.transactionHash,
+            ...webHookData,
           },
         })
         .json();

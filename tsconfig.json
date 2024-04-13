@@ -18,7 +18,8 @@
     "src",
     "test",
     "typechain",
-    "web3-functions"
+    "web3-functions",
+    "db"
   ],
   "exclude": ["node_modules"]
 }

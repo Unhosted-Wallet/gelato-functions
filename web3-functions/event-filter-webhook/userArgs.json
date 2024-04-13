@@ -1,7 +1,7 @@
 {
-  "target": "0x9999f7fea5938fd3b1e26a12c3f2fb024e194f97",
-  "event": "event Transfer(address indexed from, address indexed to, uint256 value)",
-  "eventTopic": "Transfer",
-  "filter": "0x23e359eCAB56210f4b8B559218C4d27A85b052b8",
-  "webhookUrl": "https://httpbin.org/post"
+  "target": "0xa98423788C10f8E4c0F26ADed465ba727ceE5AAB",
+  "event": "event RecurringExecutionAdded(address account, address target)",
+  "eventTopic": "RecurringExecutionAdded",
+  "filter": "",
+  "webhookUrl": "https://api.unhosted.com/v1/webhooks/recurring-execution/add-recurring-execution"
 }

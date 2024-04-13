@@ -2,7 +2,6 @@
   "name": "gelato-web3-functions-hardhat-template",
   "version": "1.0.0",
   "description": "Gelato Web3 Functions Hardhat Template",
-  "repository": "https://github.com/gelatodigital/web3-functions-hardhat-template",
   "private": false,
   "scripts": {
     "build": "yarn clean && yarn install && yarn compile && npx tsc",
@@ -62,6 +61,7 @@
   },
   "dependencies": {
     "@gelatonetwork/automate-sdk": "^3.0.2",
+    "@gelatonetwork/relay-sdk": "^5.5.6",
     "@gelatonetwork/web3-functions-sdk": "2.3.0",
     "ky": "^0.33.2"
   }
