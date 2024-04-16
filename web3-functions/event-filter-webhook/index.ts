@@ -14,11 +14,9 @@ Web3Function.onRun(async (context: Web3FunctionEventContext) => {
 
   try {
     // Parse the event from the log using the provided event ABI
-    console.log("Parsing event");
     const event = contractInterface.parseLog(log);
 
     // Handle event data
-    console.log(`Event detected: ${JSON.stringify(event)}`);
     const webHookData = {
       event: event.name,
       args: {
@@ -28,19 +26,16 @@ Web3Function.onRun(async (context: Web3FunctionEventContext) => {
       chainId,
       address: userArgs.target,
     };
-    console.log("WEBHOOK DATA ->", webHookData);
 
     try {
       // Send a POST request to the webhook URL with the event data
-      const response = await ky
+      await ky
         .post(userArgs.webhookUrl as string, {
           json: {
             ...webHookData,
           },
         })
         .json();
-
-      console.log(`Webhook response: ${JSON.stringify(response)}`);
     } catch (error) {
       // If an error occurs, log the error.
       console.error(`Error during POST request: ${error}`);
